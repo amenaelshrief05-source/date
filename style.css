@@ -1,14 +1,18 @@
-/* ==========================================
+/* =========================
    RESET
-========================================== */
+========================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-/* ==========================================
+
+
+/* =========================
    COLORS
-========================================== */
+========================= */
+
 :root {
     --navy: #071a33;
     --dark-blue: #0b2747;
@@ -19,625 +23,831 @@
     --pink: #ff9fbd;
     --red: #ff557f;
 }
-/* ==========================================
+
+
+/* =========================
    BODY
-========================================== */
+========================= */
+
 body {
     min-height: 100vh;
     overflow: hidden;
+
     font-family: "DM Sans", sans-serif;
-    color: white;
+
     background:
         radial-gradient(
-            circle at 20% 20%,
-            rgba(126, 207, 255, 0.25),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(255, 120, 170, 0.15),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #06162b,
-            #0b2747,
-            #123f68
+            circle at top,
+            #164b7a 0%,
+            #0b2747 45%,
+            #071a33 100%
         );
+
+    color: var(--white);
 }
-/* ==========================================
+
+
+/* =========================
    BACKGROUND
-========================================== */
+========================= */
+
 .background {
     position: fixed;
     inset: 0;
-    overflow: hidden;
+
     pointer-events: none;
+    overflow: hidden;
+
     z-index: 0;
 }
+
+
 /* Stars */
+
 .star {
     position: absolute;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 18px;
-    animation: twinkle 2.5s infinite ease-in-out;
+
+    color: var(--light-blue);
+
+    font-size: 25px;
+
+    opacity: 0.7;
+
+    animation: twinkle 3s infinite ease-in-out;
 }
+
 .star1 {
-    top: 13%;
+    top: 12%;
     left: 12%;
 }
+
 .star2 {
-    top: 24%;
-    right: 13%;
-    animation-delay: 0.8s;
-}
-.star3 {
-    bottom: 20%;
-    left: 10%;
-    animation-delay: 1.2s;
-}
-.star4 {
-    bottom: 14%;
+    top: 25%;
     right: 15%;
-    animation-delay: 1.7s;
-}
-@keyframes twinkle {
-    0%,
-    100% {
-        opacity: 0.2;
-        transform: scale(0.7);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.2);
-    }
-}
-/* Floating hearts */
-.floating-heart {
-    position: absolute;
-    bottom: -50px;
-    color: rgba(255, 90, 130, 0.6);
-    font-size: 22px;
-    animation: floatHeart 10s linear infinite;
-}
-.heart1 {
-    left: 10%;
-    animation-duration: 9s;
-}
-.heart2 {
-    left: 30%;
-    animation-duration: 12s;
-    animation-delay: 3s;
-}
-.heart3 {
-    left: 52%;
-    animation-duration: 10s;
     animation-delay: 1s;
 }
-.heart4 {
-    left: 75%;
-    animation-duration: 13s;
-    animation-delay: 4s;
+
+.star3 {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 1.5s;
 }
-.heart5 {
-    left: 90%;
-    animation-duration: 8s;
+
+.star4 {
+    bottom: 12%;
+    right: 20%;
     animation-delay: 2s;
 }
-@keyframes floatHeart {
-    0% {
-        transform: translateY(0) rotate(0);
-        opacity: 0;
-    }
-    15% {
-        opacity: 0.7;
-    }
-    80% {
-        opacity: 0.5;
-    }
-    100% {
-        transform:
-            translateY(-115vh)
-            rotate(360deg);
-        opacity: 0;
-    }
+
+
+/* Floating hearts */
+
+.floating-heart {
+    position: absolute;
+
+    color: var(--pink);
+
+    opacity: 0.5;
+
+    font-size: 20px;
+
+    animation: floatHeart 6s infinite ease-in-out;
 }
-/* ==========================================
-   ALL SCREENS
-========================================== */
+
+.heart1 {
+    left: 8%;
+    top: 40%;
+}
+
+.heart2 {
+    right: 10%;
+    top: 60%;
+
+    animation-delay: 1s;
+}
+
+.heart3 {
+    left: 30%;
+    bottom: 8%;
+
+    animation-delay: 2s;
+}
+
+.heart4 {
+    right: 30%;
+    top: 10%;
+
+    animation-delay: 3s;
+}
+
+.heart5 {
+    right: 5%;
+    bottom: 20%;
+
+    animation-delay: 1.5s;
+}
+
+
+/* =========================
+   SCREEN
+========================= */
+
 .screen {
     position: fixed;
     inset: 0;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 25px;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
     z-index: 2;
-    opacity: 1;
-    pointer-events: auto;
+
     transition:
-        opacity 0.6s ease,
-        transform 0.6s ease;
+        opacity 0.5s ease,
+        transform 0.5s ease;
 }
-/* Hidden screens */
+
+
 .screen.hidden {
     opacity: 0;
+
     pointer-events: none;
+
     transform: scale(0.95);
 }
-/* ==========================================
+
+
+/* =========================
    ENVELOPE SCREEN
-========================================== */
-.envelope-screen {
-    text-align: center;
-}
+========================= */
+
 .intro-text {
     margin-bottom: 35px;
-    font-size: 17px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 24px;
+
     color: var(--soft-blue);
-    letter-spacing: 0.5px;
 }
-/* Envelope container */
+
+
+.tap-text {
+    margin-top: 30px;
+
+    font-size: 15px;
+
+    color: #ccecff;
+
+    animation: pulse 2s infinite;
+}
+
+
+/* Envelope */
+
 .envelope-container {
+    position: relative;
+
     width: 330px;
     height: 230px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     cursor: pointer;
+
     perspective: 1000px;
-    transition: transform 0.3s ease;
 }
-.envelope-container:hover {
-    transform: translateY(-8px);
-}
-/* Envelope */
+
+
 .envelope {
-    position: relative;
+    position: absolute;
+
     width: 300px;
     height: 190px;
-    filter:
-        drop-shadow(
-            0 20px 30px rgba(0, 0, 0, 0.3)
-        );
+
+    left: 15px;
+    top: 20px;
 }
-/* Envelope back */
+
+
+/* Back */
+
 .envelope-back {
     position: absolute;
     inset: 0;
-    background: #bfe9ff;
+
+    background: #7fc8ed;
+
     border-radius: 8px;
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3);
 }
+
+
 /* Letter preview */
+
 .letter-preview {
     position: absolute;
-    width: 240px;
-    height: 155px;
-    background: #fffdf8;
-    left: 30px;
-    bottom: 10px;
+
+    width: 260px;
+    height: 170px;
+
+    left: 20px;
+    top: 10px;
+
+    background: white;
+
     border-radius: 5px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    transition:
-        transform 1s ease,
-        bottom 1s ease;
+
+    transition: transform 0.8s ease;
+
     z-index: 2;
 }
+
+
 .mini-heart {
-    color: var(--red);
     font-size: 35px;
 }
-/* Envelope flap */
-.envelope-flap {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-top: 105px solid #8ed2f5;
-    top: 0;
-    left: 0;
-    transform-origin: top;
-    transition:
-        transform 1s ease;
-    z-index: 4;
-}
-/* Envelope front */
+
+
+/* Front */
+
 .envelope-front {
     position: absolute;
-    bottom: 0;
+
     left: 0;
+    bottom: 0;
+
     width: 0;
     height: 0;
+
     border-left: 150px solid transparent;
     border-right: 150px solid transparent;
-    border-bottom: 110px solid #75c5ef;
-    z-index: 3;
+    border-bottom: 100px solid #9edcff;
+
+    z-index: 4;
 }
+
+
+/* Flap */
+
+.envelope-flap {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 105px solid #b9e8ff;
+
+    transform-origin: top;
+
+    transition:
+        transform 0.8s ease;
+
+    z-index: 5;
+}
+
+
 /* Seal */
+
 .seal {
     position: absolute;
+
     left: 50%;
-    top: 52%;
-    transform:
-        translate(-50%, -50%);
-    width: 55px;
-    height: 55px;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 48px;
+    height: 48px;
+
     border-radius: 50%;
+
     background: var(--red);
-    color: white;
+
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 25px;
+    justify-content: center;
+
+    font-size: 23px;
+
+    z-index: 6;
+
     box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.2);
-    z-index: 5;
-    transition: 0.5s ease;
+        0 5px 15px rgba(0, 0, 0, 0.25);
+
+    transition:
+        opacity 0.4s ease;
 }
+
+
 /* Envelope open */
+
 .envelope-container.open .envelope-flap {
     transform: rotateX(180deg);
+
     z-index: 1;
 }
+
+
 .envelope-container.open .letter-preview {
     transform: translateY(-100px);
 }
+
+
 .envelope-container.open .seal {
     opacity: 0;
+}
+
+
+/* =========================
+   LETTER
+========================= */
+
+.letter-card {
+    width: min(90%, 520px);
+
+    padding: 45px 35px;
+
+    background: white;
+
+    color: var(--navy);
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.3);
+
+    animation: cardIn 0.6s ease;
+}
+
+
+.tiny-heart {
+    font-size: 35px;
+
+    margin-bottom: 20px;
+}
+
+
+.dear {
+    font-family: "Playfair Display", serif;
+
+    font-size: 28px;
+
+    margin-bottom: 25px;
+}
+
+
+.letter-text {
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    margin-bottom: 15px;
+}
+
+
+/* Continue button */
+
+.continue-btn {
+    margin-top: 25px;
+
+    padding: 13px 25px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: var(--blue);
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.continue-btn:hover {
+    transform: translateY(-3px);
+
+    background: #1d619d;
+}
+
+
+/* =========================
+   QUESTION
+========================= */
+
+.question-card {
+    width: min(90%, 650px);
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255, 255, 255, 0.1);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.2);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+
+.big-heart {
+    font-size: 60px;
+
+    margin-bottom: 10px;
+
+    animation: heartbeat 1.5s infinite;
+}
+
+
+.small-title {
+    color: var(--light-blue);
+
+    font-size: 16px;
+
+    margin-bottom: 15px;
+}
+
+
+.question-card h1 {
+    font-family: "Playfair Display", serif;
+
+    font-size: 38px;
+
+    line-height: 1.25;
+
+    margin-bottom: 20px;
+}
+
+
+.question-card h1 span {
+    color: var(--pink);
+}
+
+
+.subtext {
+    color: #d8efff;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons-container {
+    position: relative;
+
+    height: 80px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.yes-btn,
+.no-btn {
+    border: none;
+
+    padding: 13px 25px;
+
+    border-radius: 30px;
+
+    font-size: 16px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.yes-btn {
+    background: var(--pink);
+
+    color: var(--navy);
+
+    font-weight: 700;
+}
+
+
+.yes-btn:hover {
+    transform: scale(1.08);
+}
+
+
+.no-btn {
+    background: white;
+
+    color: var(--navy);
+
+    position: relative;
+
+    z-index: 10;
+}
+
+
+/* =========================
+   NO MESSAGE
+========================= */
+
+.no-message {
+    position: fixed;
+
+    left: 50%;
+    top: 38%;
+
     transform:
         translate(-50%, -50%)
-        scale(0);
+        scale(0.8);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    padding: 12px 20px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    color: var(--navy);
+
+    font-weight: 600;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+
+    z-index: 100;
 }
-/* Tap text */
-.tap-text {
-    margin-top: 30px;
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 14px;
-    animation: tapPulse 1.8s infinite;
+
+
+.no-message.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.05);
 }
-@keyframes tapPulse {
+
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success-card {
+    width: min(90%, 600px);
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.2);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.3);
+
+    animation: cardIn 0.6s ease;
+}
+
+
+.success-heart {
+    font-size: 75px;
+
+    margin-bottom: 15px;
+
+    animation: heartbeat 1.2s infinite;
+}
+
+
+.yay {
+    color: var(--light-blue);
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+
+.success-card h1 {
+    font-family: "Playfair Display", serif;
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+
+.date-note {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 10px 18px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================
+   HEART EXPLOSION
+========================= */
+
+.explosion-heart {
+    position: fixed;
+
+    z-index: 200;
+
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+
+    animation: explode 3s ease-out forwards;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes twinkle {
+
     0%,
     100% {
-        opacity: 0.5;
+        opacity: 0.3;
+
+        transform: scale(0.8);
     }
+
+    50% {
+        opacity: 1;
+
+        transform: scale(1.2);
+    }
+}
+
+
+@keyframes floatHeart {
+
+    0%,
+    100% {
+        transform: translateY(0);
+
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: translateY(-25px);
+
+        opacity: 0.8;
+    }
+}
+
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
     50% {
         opacity: 1;
     }
 }
-/* ==========================================
-   LETTER
-========================================== */
-.letter-card {
-    width: 90%;
-    max-width: 480px;
-    padding: 50px 40px;
-    background: #fffdf8;
-    color: var(--navy);
-    border-radius: 6px;
-    box-shadow:
-        0 30px 70px rgba(0, 0, 0, 0.35);
-    transform: rotate(-1deg);
-    animation: letterAppear 0.8s ease;
-}
-@keyframes letterAppear {
-    from {
-        opacity: 0;
-        transform:
-            translateY(40px)
-            rotate(-4deg);
-    }
-    to {
-        opacity: 1;
-        transform:
-            translateY(0)
-            rotate(-1deg);
-    }
-}
-.tiny-heart {
-    color: var(--red);
-    font-size: 30px;
-    margin-bottom: 25px;
-}
-.dear {
-    font-family:
-        "Playfair Display",
-        serif;
-    font-size: 30px;
-    color: var(--navy);
-    margin-bottom: 25px;
-}
-.letter-text {
-    font-size: 17px;
-    line-height: 1.8;
-    margin-bottom: 15px;
-    color: #18324d;
-    font-weight: 500;
-}
-/* Continue button */
-.continue-btn {
-    margin-top: 25px;
-    border: none;
-    background: var(--navy);
-    color: white;
-    padding: 13px 23px;
-    border-radius: 30px;
-    font-family: inherit;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-.continue-btn:hover {
-    background: var(--blue);
-    transform: translateX(5px);
-}
-/* ==========================================
-   QUESTION
-========================================== */
-.question-card {
-    width: 90%;
-    max-width: 570px;
-    padding: 55px 40px;
-    text-align: center;
-    background:
-        rgba(255, 255, 255, 0.11);
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.22);
-    border-radius: 32px;
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.3);
-    animation:
-        questionAppear 0.8s ease;
-}
-@keyframes questionAppear {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-/* Big heart */
-.big-heart {
-    width: 75px;
-    height: 75px;
-    margin:
-        0 auto 25px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background:
-        rgba(255, 100, 140, 0.13);
-    color: #ff789b;
-    font-size: 38px;
-    animation:
-        heartbeat 1.5s infinite;
-}
+
+
 @keyframes heartbeat {
+
     0%,
     100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.12);
     }
 }
-.small-title {
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 12px;
-    color: var(--light-blue);
-    margin-bottom: 18px;
-}
-.question-card h1 {
-    font-family:
-        "Playfair Display",
-        serif;
-    font-size: 38px;
-    line-height: 1.35;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 20px;
-}
-.question-card h1 span {
-    color: var(--light-blue);
-}
-.subtext {
-    color:
-        rgba(255, 255, 255, 0.75);
-    font-size: 14px;
-    margin-bottom: 35px;
-}
-/* ==========================================
-   BUTTONS
-========================================== */
-.buttons-container {
-    position: relative;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 18px;
-}
-.buttons-container button {
-    border: none;
-    padding: 14px 32px;
-    border-radius: 50px;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-/* YES */
-.yes-btn {
-    background: var(--light-blue);
-    color: var(--navy);
-    box-shadow:
-        0 8px 25px
-        rgba(100, 200, 255, 0.2);
-}
-.yes-btn:hover {
-    transform: scale(1.1);
-    background: white;
-}
-/* NO */
-.no-btn {
-    background: white;
-    color: var(--navy);
-    position: relative;
-    z-index: 10;
-}
-/* ==========================================
-   SUCCESS
-========================================== */
-.success-card {
-    text-align: center;
-    animation:
-        successAppear 0.8s ease;
-}
-@keyframes successAppear {
+
+
+@keyframes cardIn {
+
     from {
         opacity: 0;
-        transform: scale(0.7);
+
+        transform: translateY(20px) scale(0.95);
     }
+
     to {
         opacity: 1;
-        transform: scale(1);
+
+        transform: translateY(0) scale(1);
     }
 }
-.success-heart {
-    font-size: 85px;
-    color: #ff668d;
-    margin-bottom: 20px;
-    animation:
-        heartbeat 1.2s infinite;
-}
-.yay {
-    color: var(--light-blue);
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-bottom: 10px;
-}
-.success-card h1 {
-    font-family:
-        "Playfair Display",
-        serif;
-    font-size: 55px;
-    color: white;
-    margin-bottom: 15px;
-}
-.success-card p {
-    font-size: 18px;
-    color:
-        rgba(255, 255, 255, 0.85);
-}
-.date-note {
-    margin-top: 30px;
-    display: inline-flex;
-    gap: 15px;
-    align-items: center;
-    padding: 12px 22px;
-    border-radius: 50px;
-    background:
-        rgba(255, 255, 255, 0.1);
-    color: #cceeff;
-    font-size: 14px;
-}
-.date-note span {
-    color: #ff668d;
-}
-/* ==========================================
-   HEART EXPLOSION
-========================================== */
-.explosion-heart {
-    position: fixed;
-    pointer-events: none;
-    z-index: 100;
-    font-size: 25px;
-    animation:
-        explode 2.5s ease-out forwards;
-}
+
+
 @keyframes explode {
+
     0% {
         opacity: 1;
+
         transform:
+            translate(-50%, -50%)
             translate(0, 0)
-            scale(0.5);
+            scale(1);
     }
+
     100% {
         opacity: 0;
+
         transform:
+            translate(-50%, -50%)
             translate(var(--x), var(--y))
-            rotate(360deg)
-            scale(1.4);
+            scale(0.4);
     }
 }
-/* ==========================================
+
+
+/* =========================
    MOBILE
-========================================== */
+========================= */
+
 @media (max-width: 600px) {
-    .envelope {
+
+    .intro-text {
+        font-size: 20px;
+    }
+
+    .envelope-container {
         transform: scale(0.85);
     }
-    .intro-text {
-        font-size: 15px;
-    }
+
     .letter-card {
-        padding: 40px 28px;
+        padding: 35px 25px;
     }
+
     .question-card {
-        padding: 45px 22px;
+        padding: 35px 20px;
     }
+
     .question-card h1 {
         font-size: 30px;
     }
+
     .success-card h1 {
-        font-size: 43px;
+        font-size: 32px;
     }
-    .success-heart {
-        font-size: 70px;
+
+    .big-heart {
+        font-size: 50px;
     }
-}
-/* ==========================================
-   NO BUTTON FUN MESSAGE
-========================================== */
-.no-message {
-    position: fixed;
-    left: 50%;
-    top: 38%;
-    transform: translate(-50%, -50%);
-    background: white;
-    color: var(--navy);
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 50;
-    transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
-}
-.no-message.show {
-    opacity: 1;
-    transform:
-        translate(-50%, -50%)
-        scale(1.05);
+
 }
