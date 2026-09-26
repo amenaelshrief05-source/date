@@ -1,6 +1,11 @@
+emailjs.init({
+    publicKey: “template _rplw6w5”
+});
+
 /* =========================
    GET ELEMENTS
 ========================= */
+
 
 const envelope =
     document.getElementById("envelope");
@@ -203,9 +208,50 @@ noBtn.addEventListener(
    YES BUTTON
 ========================= */
 
+// yesBtn.addEventListener(
+//     "click",
+//     function () {
+
+//         questionScreen.classList.add("hidden");
+
+//         setTimeout(function () {
+
+//             successScreen.classList.remove("hidden");
+
+//         }, 500);
+
+
+//         createHeartExplosion();
+
+   /* =========================
+   YES BUTTON
+========================= */
+
 yesBtn.addEventListener(
     "click",
     function () {
+
+        emailjs.send(
+            "service_c5w8hjg",
+            "template_rplw6w5",
+            {
+                message: "HE SAID YES! 🥳💙"
+            }
+        )
+        .then(function () {
+
+            console.log("YES notification sent!");
+
+        })
+        .catch(function (error) {
+
+            console.log(
+                "Email failed:",
+                error
+            );
+
+        });
+
 
         questionScreen.classList.add("hidden");
 
@@ -215,11 +261,11 @@ yesBtn.addEventListener(
 
         }, 500);
 
-
         createHeartExplosion();
 
     }
 );
+
 
 
 /* =========================
