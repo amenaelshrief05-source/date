@@ -1,11 +1,15 @@
+/* =========================
+   EMAILJS
+========================= */
+
 emailjs.init({
-    publicKey: “template _rplw6w5”
+    publicKey: "mgfTGPrkAFVPc9okr"
 });
+
 
 /* =========================
    GET ELEMENTS
 ========================= */
-
 
 const envelope =
     document.getElementById("envelope");
@@ -36,200 +40,113 @@ const noMessage =
 
 
 /* =========================
-   OPEN ENVELOPE
+   ENVELOPE
 ========================= */
 
-envelope.addEventListener("click", function () {
+envelope.addEventListener(
+    "click",
+    function () {
 
-    envelope.classList.add("open");
-
-    setTimeout(function () {
-
-        envelopeScreen.classList.add("hidden");
+        envelope.classList.add("open");
 
         setTimeout(function () {
 
+            envelopeScreen.classList.add("hidden");
+
             letterScreen.classList.remove("hidden");
 
-        }, 500);
+        }, 900);
 
-    }, 1100);
-
-});
+    }
+);
 
 
 /* =========================
-   LETTER → QUESTION
+   CONTINUE BUTTON
 ========================= */
 
-continueBtn.addEventListener("click", function () {
+continueBtn.addEventListener(
+    "click",
+    function () {
 
-    letterScreen.classList.add("hidden");
-
-    setTimeout(function () {
+        letterScreen.classList.add("hidden");
 
         questionScreen.classList.remove("hidden");
 
-    }, 500);
-
-});
+    }
+);
 
 
 /* =========================
-   NO BUTTON MESSAGES
+   NO BUTTON
 ========================= */
 
 const noMessages = [
-
     "Hmm... interesting choice 🤨",
-
     "Are you sure about that? 👀",
-
     "Nice try 😂",
-
     "I'm not convinced 👀",
-
     "The button says otherwise 😌",
-
     "You almost got away with it 😭",
-
     "Wrong answer... try again 🤭"
-
 ];
 
-let noMessageIndex = 0;
-
-
-/* =========================
-   MOVE NO BUTTON
-========================= */
-
-function moveNoButton() {
-
-    /* Show message */
-
-    noMessage.textContent =
-        noMessages[noMessageIndex];
-
-    noMessage.classList.add("show");
-
-
-    /* Next message */
-
-    noMessageIndex++;
-
-    if (noMessageIndex >= noMessages.length) {
-
-        noMessageIndex = 0;
-
-    }
-
-
-    /* Hide message */
-
-    setTimeout(function () {
-
-        noMessage.classList.remove("show");
-
-    }, 1200);
-
-
-    /* Move button */
-
-    noBtn.style.position = "absolute";
-
-
-    const randomX =
-        Math.random() * 220 - 110;
-
-    const randomY =
-        Math.random() * 100 - 50;
-
-
-    noBtn.style.left = "50%";
-
-    noBtn.style.top = "50%";
-
-    noBtn.style.transform =
-        `translate(
-            calc(-50% + ${randomX}px),
-            calc(-50% + ${randomY}px)
-        )`;
-
-}
-
-
-/* =========================
-   DESKTOP
-========================= */
-
-noBtn.addEventListener(
-    "mouseenter",
-    moveNoButton
-);
-
-
-/* =========================
-   MOBILE
-========================= */
-
-noBtn.addEventListener(
-    "touchstart",
-    function (event) {
-
-        event.preventDefault();
-
-        moveNoButton();
-
-    },
-    {
-        passive: false
-    }
-);
-
-
-/* =========================
-   IF SHE CLICKS NO
-========================= */
+let noClickCount = 0;
 
 noBtn.addEventListener(
     "click",
-    function (event) {
+    function () {
 
-        event.preventDefault();
+        const message =
+            noMessages[
+                noClickCount % noMessages.length
+            ];
 
-        moveNoButton();
+        noMessage.textContent = message;
+
+        noMessage.classList.add("show");
+
+        noClickCount++;
+
+        /* Make the No button move */
+
+        const maxX =
+            window.innerWidth - noBtn.offsetWidth - 30;
+
+        const maxY =
+            window.innerHeight - noBtn.offsetHeight - 30;
+
+        const randomX =
+            Math.max(
+                20,
+                Math.random() * maxX
+            );
+
+        const randomY =
+            Math.max(
+                20,
+                Math.random() * maxY
+            );
+
+        noBtn.style.position = "fixed";
+
+        noBtn.style.left = randomX + "px";
+
+        noBtn.style.top = randomY + "px";
 
     }
 );
 
 
 /* =========================
-   YES BUTTON
-========================= */
-
-// yesBtn.addEventListener(
-//     "click",
-//     function () {
-
-//         questionScreen.classList.add("hidden");
-
-//         setTimeout(function () {
-
-//             successScreen.classList.remove("hidden");
-
-//         }, 500);
-
-
-//         createHeartExplosion();
-
-   /* =========================
    YES BUTTON
 ========================= */
 
 yesBtn.addEventListener(
     "click",
     function () {
+
+        /* Send email notification */
 
         emailjs.send(
             "service_c5w8hjg",
@@ -240,7 +157,9 @@ yesBtn.addEventListener(
         )
         .then(function () {
 
-            console.log("YES notification sent!");
+            console.log(
+                "YES notification sent!"
+            );
 
         })
         .catch(function (error) {
@@ -253,6 +172,8 @@ yesBtn.addEventListener(
         });
 
 
+        /* Show success screen */
+
         questionScreen.classList.add("hidden");
 
         setTimeout(function () {
@@ -261,11 +182,13 @@ yesBtn.addEventListener(
 
         }, 500);
 
+
+        /* Heart explosion */
+
         createHeartExplosion();
 
     }
 );
-
 
 
 /* =========================
@@ -275,68 +198,49 @@ yesBtn.addEventListener(
 function createHeartExplosion() {
 
     const hearts = [
-        "❤️",
-        "💙",
         "♥️",
-        "💕",
+        "💙",
         "💗",
-        "♡"
+        "💖",
+        "💕",
+        "✨"
     ];
-
 
     for (let i = 0; i < 35; i++) {
 
         const heart =
             document.createElement("div");
 
-
         heart.classList.add(
-            "explosion-heart"
+            "exploding-heart"
         );
 
-
-        heart.innerHTML =
+        heart.textContent =
             hearts[
                 Math.floor(
-                    Math.random() * hearts.length
+                    Math.random() *
+                    hearts.length
                 )
             ];
 
+        heart.style.left =
+            "50%";
 
-        heart.style.left = "50%";
-
-        heart.style.top = "50%";
-
-
-        const x =
-            Math.random() * 700 - 350;
-
-        const y =
-            Math.random() * 700 - 350;
-
+        heart.style.top =
+            "50%";
 
         heart.style.setProperty(
             "--x",
-            x + "px"
+            (Math.random() * 500 - 250) + "px"
         );
 
         heart.style.setProperty(
             "--y",
-            y + "px"
+            (Math.random() * 500 - 250) + "px"
         );
 
-
-        const size =
-            15 + Math.random() * 25;
-
-
         heart.style.fontSize =
-            size + "px";
-
-
-        heart.style.animationDelay =
-            Math.random() * 0.4 + "s";
-
+            (Math.random() * 15 + 15) + "px";
 
         document.body.appendChild(heart);
 
@@ -345,7 +249,7 @@ function createHeartExplosion() {
 
             heart.remove();
 
-        }, 3500);
+        }, 1500);
 
     }
 
