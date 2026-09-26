@@ -17,16 +17,15 @@ const yesBtn =
     document.getElementById("yesBtn");
 const noBtn =
     document.getElementById("noBtn");
+const noMessage =
+    document.getElementById("noMessage");
 /* ==========================================
    OPEN ENVELOPE
 ========================================== */
 envelope.addEventListener("click", function () {
-    /* Open the envelope */
     envelope.classList.add("open");
-    /* Wait for the envelope animation */
     setTimeout(function () {
         envelopeScreen.classList.add("hidden");
-        /* Show the letter */
         setTimeout(function () {
             letterScreen.classList.remove("hidden");
         }, 500);
@@ -36,19 +35,14 @@ envelope.addEventListener("click", function () {
    LETTER → QUESTION
 ========================================== */
 continueBtn.addEventListener("click", function () {
-    /* Hide the letter */
     letterScreen.classList.add("hidden");
-    /* Show the question */
     setTimeout(function () {
         questionScreen.classList.remove("hidden");
     }, 500);
 });
 /* ==========================================
-   MAKE NO BUTTON RUN AWAY
+   NO BUTTON MESSAGES
 ========================================== */
-function moveNoButton() {
-  const noMessage =
-    document.getElementById("noMessage");
 const noMessages = [
     "Hmm... interesting choice 🤨",
     "Are you sure about that? 👀",
@@ -59,21 +53,24 @@ const noMessages = [
     "Wrong answer... try again 🤭"
 ];
 let noMessageIndex = 0;
+/* ==========================================
+   MAKE NO BUTTON RUN AWAY
+========================================== */
 function moveNoButton() {
-    /* Show a random message */
+    /* Show a message */
     noMessage.textContent =
         noMessages[noMessageIndex];
     noMessage.classList.add("show");
-    /* Next message */
+    /* Move to the next message */
     noMessageIndex++;
     if (noMessageIndex >= noMessages.length) {
         noMessageIndex = 0;
     }
-    /* Hide message after a second */
+    /* Hide the message after 1.2 seconds */
     setTimeout(function () {
         noMessage.classList.remove("show");
     }, 1200);
-    /* Move the No button */
+    /* Make the button move */
     noBtn.style.position = "absolute";
     const randomX =
         Math.random() * 260 - 130;
@@ -87,37 +84,9 @@ function moveNoButton() {
             calc(-50% + ${randomY}px)
         )`;
 }
-/* Desktop */
-noBtn.addEventListener(
-    "mouseenter",
-    moveNoButton
-);
-/* Mobile */
-noBtn.addEventListener(
-    "touchstart",
-    function (event) {
-        event.preventDefault();
-        moveNoButton();
-    },
-    {
-        passive: false
-    }
-);
-/* If she somehow clicks it */
-noBtn.addEventListener(
-    "click",
-    function (event) {
-        event.preventDefault();
-        moveNoButton();
-    }
-);
 /* ==========================================
    DESKTOP
 ========================================== */
-/*
-    On a computer, the No button moves
-    as soon as the mouse gets over it.
-*/
 noBtn.addEventListener(
     "mouseenter",
     moveNoButton
@@ -125,11 +94,6 @@ noBtn.addEventListener(
 /* ==========================================
    MOBILE
 ========================================== */
-/*
-    Phones don't have hover.
-    So when she touches the No button,
-    it moves immediately.
-*/
 noBtn.addEventListener(
     "touchstart",
     function (event) {
@@ -141,7 +105,7 @@ noBtn.addEventListener(
     }
 );
 /* ==========================================
-   IF SHE ACTUALLY CLICKS NO
+   IF SHE CLICKS NO
 ========================================== */
 noBtn.addEventListener(
     "click",
@@ -156,20 +120,13 @@ noBtn.addEventListener(
 yesBtn.addEventListener(
     "click",
     function () {
-        /*
-            Hide the question.
-        */
+        /* Hide question */
         questionScreen.classList.add("hidden");
-        /*
-            Show the success screen
-            after a tiny animation delay.
-        */
+        /* Show success */
         setTimeout(function () {
             successScreen.classList.remove("hidden");
         }, 500);
-        /*
-            Start the heart explosion.
-        */
+        /* Heart explosion */
         createHeartExplosion();
     }
 );
@@ -180,50 +137,33 @@ function createHeartExplosion() {
     const hearts = [
         "❤️",
         "💙",
-        "♥",
+        "♥️",
         "💕",
         "💗",
         "♡"
     ];
-    /*
-        Create 35 hearts.
-    */
+    /* Create 35 hearts */
     for (let i = 0; i < 35; i++) {
         const heart =
             document.createElement("div");
-        /*
-            Give the heart its CSS class.
-        */
         heart.classList.add(
             "explosion-heart"
         );
-        /*
-            Pick a random heart.
-        */
+        /* Random heart */
         heart.innerHTML =
             hearts[
                 Math.floor(
                     Math.random() * hearts.length
                 )
             ];
-        /*
-            Start all hearts
-            from the center of the screen.
-        */
+        /* Start from center */
         heart.style.left = "50%";
         heart.style.top = "50%";
-        /*
-            Give every heart
-            a different random direction.
-        */
+        /* Random direction */
         const x =
             Math.random() * 700 - 350;
         const y =
             Math.random() * 700 - 350;
-        /*
-            Send the random values
-            to the CSS animation.
-        */
         heart.style.setProperty(
             "--x",
             x + "px"
@@ -232,27 +172,17 @@ function createHeartExplosion() {
             "--y",
             y + "px"
         );
-        /*
-            Random heart size.
-        */
+        /* Random size */
         const size =
             15 + Math.random() * 25;
         heart.style.fontSize =
             size + "px";
-        /*
-            Slightly random animation timing
-            makes the explosion look natural.
-        */
+        /* Random delay */
         heart.style.animationDelay =
             Math.random() * 0.4 + "s";
-        /*
-            Add heart to the page.
-        */
+        /* Add to page */
         document.body.appendChild(heart);
-        /*
-            Remove it after the animation
-            so the page doesn't get full of hearts.
-        */
+        /* Remove after animation */
         setTimeout(function () {
             heart.remove();
         }, 3500);
