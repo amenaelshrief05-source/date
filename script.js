@@ -47,35 +47,70 @@ continueBtn.addEventListener("click", function () {
    MAKE NO BUTTON RUN AWAY
 ========================================== */
 function moveNoButton() {
-    /*
-        Change the button to absolute
-        so it can move around.
-    */
+  const noMessage =
+    document.getElementById("noMessage");
+const noMessages = [
+    "Hmm... interesting choice 🤨",
+    "Are you sure about that? 👀",
+    "Nice try 😂",
+    "I'm not convinced 👀",
+    "The button says otherwise 😌",
+    "You almost got away with it 😭",
+    "Wrong answer... try again 🤭"
+];
+let noMessageIndex = 0;
+function moveNoButton() {
+    /* Show a random message */
+    noMessage.textContent =
+        noMessages[noMessageIndex];
+    noMessage.classList.add("show");
+    /* Next message */
+    noMessageIndex++;
+    if (noMessageIndex >= noMessages.length) {
+        noMessageIndex = 0;
+    }
+    /* Hide message after a second */
+    setTimeout(function () {
+        noMessage.classList.remove("show");
+    }, 1200);
+    /* Move the No button */
     noBtn.style.position = "absolute";
-    /*
-        Generate a random position.
-        The button stays relatively close
-        to the question card.
-    */
     const randomX =
         Math.random() * 260 - 130;
     const randomY =
         Math.random() * 140 - 70;
-    /*
-        Put the button around the center
-        of the buttons area.
-    */
     noBtn.style.left = "50%";
     noBtn.style.top = "50%";
-    /*
-        Move it to the random position.
-    */
     noBtn.style.transform =
         `translate(
             calc(-50% + ${randomX}px),
             calc(-50% + ${randomY}px)
         )`;
 }
+/* Desktop */
+noBtn.addEventListener(
+    "mouseenter",
+    moveNoButton
+);
+/* Mobile */
+noBtn.addEventListener(
+    "touchstart",
+    function (event) {
+        event.preventDefault();
+        moveNoButton();
+    },
+    {
+        passive: false
+    }
+);
+/* If she somehow clicks it */
+noBtn.addEventListener(
+    "click",
+    function (event) {
+        event.preventDefault();
+        moveNoButton();
+    }
+);
 /* ==========================================
    DESKTOP
 ========================================== */
