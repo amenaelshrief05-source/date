@@ -612,3 +612,32 @@ body {
         font-size: 70px;
     }
 }
+/* ==========================================
+   NO BUTTON FUN MESSAGE
+========================================== */
+.no-message {
+    position: fixed;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: var(--navy);
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 50;
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+.no-message.show {
+    opacity: 1;
+    transform:
+        translate(-50%, -50%)
+        scale(1.05);
+}
