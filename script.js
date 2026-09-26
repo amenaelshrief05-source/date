@@ -11,70 +11,46 @@ emailjs.init({
    GET ELEMENTS
 ========================= */
 
-const envelope =
-    document.getElementById("envelope");
+const envelope = document.getElementById("envelope");
+const envelopeScreen = document.getElementById("envelopeScreen");
+const letterScreen = document.getElementById("letterScreen");
+const questionScreen = document.getElementById("questionScreen");
+const successScreen = document.getElementById("successScreen");
 
-const envelopeScreen =
-    document.getElementById("envelopeScreen");
-
-const letterScreen =
-    document.getElementById("letterScreen");
-
-const questionScreen =
-    document.getElementById("questionScreen");
-
-const successScreen =
-    document.getElementById("successScreen");
-
-const continueBtn =
-    document.getElementById("continueBtn");
-
-const yesBtn =
-    document.getElementById("yesBtn");
-
-const noBtn =
-    document.getElementById("noBtn");
-
-const noMessage =
-    document.getElementById("noMessage");
+const continueBtn = document.getElementById("continueBtn");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const noMessage = document.getElementById("noMessage");
 
 
 /* =========================
    ENVELOPE
 ========================= */
 
-envelope.addEventListener(
-    "click",
-    function () {
+envelope.addEventListener("click", function () {
 
-        envelope.classList.add("open");
+    envelope.classList.add("open");
 
-        setTimeout(function () {
+    setTimeout(function () {
 
-            envelopeScreen.classList.add("hidden");
+        envelopeScreen.classList.add("hidden");
+        letterScreen.classList.remove("hidden");
 
-            letterScreen.classList.remove("hidden");
+    }, 900);
 
-        }, 900);
-
-    }
-);
+});
 
 
 /* =========================
    CONTINUE BUTTON
 ========================= */
 
-continueBtn.addEventListener(
-    "click",
-    function () {
+continueBtn.addEventListener("click", function () {
 
-        letterScreen.classList.add("hidden");
+    letterScreen.classList.add("hidden");
+    questionScreen.classList.remove("hidden");
 
-        questionScreen.classList.remove("hidden");
-
-    }
-);
+});
 
 
 /* =========================
@@ -93,102 +69,81 @@ const noMessages = [
 
 let noClickCount = 0;
 
-noBtn.addEventListener(
-    "click",
-    function () {
+noBtn.addEventListener("click", function () {
 
-        const message =
-            noMessages[
-                noClickCount % noMessages.length
-            ];
+    const message =
+        noMessages[noClickCount % noMessages.length];
 
-        noMessage.textContent = message;
+    noMessage.textContent = message;
 
-        noMessage.classList.add("show");
+    noMessage.classList.add("show");
 
-        noClickCount++;
+    noClickCount++;
 
-        /* Make the No button move */
+    /* Make the No button move */
 
-        const maxX =
-            window.innerWidth - noBtn.offsetWidth - 30;
+    const maxX =
+        window.innerWidth - noBtn.offsetWidth - 30;
 
-        const maxY =
-            window.innerHeight - noBtn.offsetHeight - 30;
+    const maxY =
+        window.innerHeight - noBtn.offsetHeight - 30;
 
-        const randomX =
-            Math.max(
-                20,
-                Math.random() * maxX
-            );
+    const randomX =
+        Math.max(20, Math.random() * maxX);
 
-        const randomY =
-            Math.max(
-                20,
-                Math.random() * maxY
-            );
+    const randomY =
+        Math.max(20, Math.random() * maxY);
 
-        noBtn.style.position = "fixed";
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
 
-        noBtn.style.left = randomX + "px";
-
-        noBtn.style.top = randomY + "px";
-
-    }
-);
+});
 
 
 /* =========================
    YES BUTTON
 ========================= */
 
-yesBtn.addEventListener(
-    "click",
-    function () {
+yesBtn.addEventListener("click", function () {
 
-        /* Send email notification */
+    /* Send email notification */
 
-        emailjs.send(
-            "service_c5w8hjg",
-            "template_rplw6w5",
-            {
-                message: "HE SAID YES! 🥳💙"
-            }
-        )
-        .then(function () {
+    emailjs.send(
+        "service_c5w8hjg",
+        "template_rplw6w5",
+        {
+            message: "HE SAID YES! 🥳💙"
+        }
+    )
+    .then(function () {
 
-            console.log(
-                "YES notification sent!"
-            );
+        console.log("YES notification sent!");
 
-        })
-        .catch(function (error) {
+    })
+    .catch(function (error) {
 
-            console.log(
-                "Email failed:",
-                error
-            );
+        console.log("Email failed:", error);
 
-        });
+    });
 
 
-        /* Show success screen */
+    /* Show success screen */
 
-        questionScreen.classList.add("hidden");
+    questionScreen.classList.add("hidden");
 
-        setTimeout(function () {
+    setTimeout(function () {
 
-            successScreen.classList.remove("hidden");
+        successScreen.classList.remove("hidden");
 
-        }, 500);
+    }, 500);
 
 
-        /* Heart explosion */
+    /* Heart explosion */
 
-        createHeartExplosion();
+    createHeartExplosion();
 
-    }
-);
+});
 
 
 /* =========================
@@ -208,26 +163,19 @@ function createHeartExplosion() {
 
     for (let i = 0; i < 35; i++) {
 
-        const heart =
-            document.createElement("div");
+        const heart = document.createElement("div");
 
-        heart.classList.add(
-            "exploding-heart"
-        );
+        heart.classList.add("explosion-heart");
 
         heart.textContent =
             hearts[
                 Math.floor(
-                    Math.random() *
-                    hearts.length
+                    Math.random() * hearts.length
                 )
             ];
 
-        heart.style.left =
-            "50%";
-
-        heart.style.top =
-            "50%";
+        heart.style.left = "50%";
+        heart.style.top = "50%";
 
         heart.style.setProperty(
             "--x",
@@ -244,12 +192,11 @@ function createHeartExplosion() {
 
         document.body.appendChild(heart);
 
-
         setTimeout(function () {
 
             heart.remove();
 
-        }, 1500);
+        }, 3000);
 
     }
 
